@@ -1,5 +1,7 @@
 # json2qti
 
+[![Test](https://github.com/jncraton/json2qti/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/test.yml)
+
 Build LMS quizzes from simple json.
 
 ## Format
