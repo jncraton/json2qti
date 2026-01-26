@@ -10,4 +10,4 @@ upload:
 	python3 -m twine upload dist/*
 
 clean:
-	rm -rf dist
+	rm -rf dist __pycache__
