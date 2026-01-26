@@ -231,7 +231,7 @@ def main():
     )
 
     # Create Zip File
-    output_filename = title + ".zip"
+    output_filename = os.path.splitext(os.path.basename(input_file))[0] + ".zip"
     quiz_root = f"assessment_{json_hash}"
     
     try:
