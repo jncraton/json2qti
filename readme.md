@@ -1,1 +1,22 @@
 # json2qti
+
+Build LMS quizzes from simple json.
+
+## Format
+
+The JSON representation is as minimal as possible to allow for token-efficient generation and processing by LLMs. All questions are multiple choice. Questions are keys in an object. Answers are provided as a list of values. The first answer is always the correct choice. Generated quizzes will have answer shuffling enabled.
+
+Here's an example:
+
+```json
+{
+  "What is 1+1?": ["2", "2", "2", "2"],
+  "What is 1+2?": ["2", "2", "2", "2"],
+}
+```
+
+## Usage
+
+```sh
+python3 json2qti quiz.json # Produces quiz.zip QTI file
+```
