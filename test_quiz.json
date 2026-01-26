@@ -1,0 +1,7 @@
+{
+  "Test Quiz":
+    "What is 2+2?": ["4", "3", "5", "22"],
+    "What is the capital of France?": ["Paris", "London", "Berlin", "Madrid"],
+    "Select the prime number": ["7", "4", "6", "8"]
+  }
+}
