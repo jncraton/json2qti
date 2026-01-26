@@ -4,6 +4,7 @@ import hashlib
 import html
 import zipfile
 import os
+import random
 
 # XML Templates
 ASSESSMENT_META_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
@@ -202,15 +203,20 @@ def main():
         choice_xml_parts = []
         original_answer_ids = []
         correct_choice_id = None
+        
+        # Create a list of (index, answer_text) tuples to track original position
+        # We preserve the original index to identify the correct answer (index 0)
+        indexed_answers = list(enumerate(answers))
+        random.shuffle(indexed_answers)
 
-        for i, answer_text in enumerate(answers):
+        for i, answer_text in indexed_answers:
             # Unique ID for the answer
             choice_id = "text2qti_choice_" + generate_id(
                 question_text + str(answer_text) + str(i) + json_hash
             )
             original_answer_ids.append(choice_id)
 
-            # First answer is correct
+            # First answer (original index 0) is correct
             if i == 0:
                 correct_choice_id = choice_id
 
