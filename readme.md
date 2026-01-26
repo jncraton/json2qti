@@ -30,6 +30,26 @@ The input format is minimal by design.
 }
 ```
 
+### Code Formatting
+You can include inline code snippets by wrapping them in backticks (\`). This is useful for programming questions.
+
+```json
+{
+  "Python Quiz": {
+    "What does `print('hello')` output?": [
+      "`hello` to stdout",
+      "`hello` to stderr",
+      "Nothing"
+    ],
+    "Which operator checks for equality?": [
+      "`==`",
+      "`=`",
+      "`!=`"
+    ]
+  }
+}
+```
+
 ## 💻 Usage
 
 ### Quick Run (Recommended)

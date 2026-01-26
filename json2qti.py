@@ -5,6 +5,7 @@ import html
 import zipfile
 import os
 import random
+import re
 
 # XML Templates
 ASSESSMENT_META_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
@@ -114,7 +115,7 @@ ITEM_TEMPLATE = """      <item ident="text2qti_question_{question_id}" title="Qu
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;p&gt;{question_text}&lt;/p&gt;</mattext>
+            <mattext texttype="text/html">{question_text}</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -137,7 +138,7 @@ ITEM_TEMPLATE = """      <item ident="text2qti_question_{question_id}" title="Qu
 
 CHOICE_TEMPLATE = """              <response_label ident="{choice_id}">
                 <material>
-                  <mattext texttype="text/html">&lt;p&gt;{choice_text}&lt;/p&gt;</mattext>
+                  <mattext texttype="text/html">{choice_text}</mattext>
                 </material>
               </response_label>"""
 
@@ -146,6 +147,24 @@ def generate_id(content):
     """Generates a unique ID based on content."""
     return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
+
+def format_content(text):
+    """Formats text as HTML, detecting code blocks."""
+    # Escape HTML special characters first
+    text = html.escape(text)
+    
+    # Handle code blocks
+    # We look for text surrounded by backticks `code`
+    def replace_code(match):
+        code_content = match.group(1)
+        return f"<code>{code_content}</code>"
+
+    # Replace backticks with code tags
+    # The regex looks for `([^`]+)` which matches backticks surrounding non-backtick characters
+    text = re.sub(r'`([^`]+)`', replace_code, text)
+    
+    # Wrap in paragraph tag
+    return f"&lt;p&gt;{text}&lt;/p&gt;"
 
 def main():
     if len(sys.argv) < 2:
@@ -222,14 +241,14 @@ def main():
 
             choice_xml_parts.append(
                 CHOICE_TEMPLATE.format(
-                    choice_id=choice_id, choice_text=html.escape(str(answer_text))
+                    choice_id=choice_id, choice_text=format_content(str(answer_text))
                 )
             )
 
         item_xml = ITEM_TEMPLATE.format(
             question_id=question_id,
             original_answer_ids=",".join(original_answer_ids),
-            question_text=html.escape(question_text),
+            question_text=format_content(question_text),
             choices="\n".join(choice_xml_parts),
             correct_choice_id=correct_choice_id,
         )

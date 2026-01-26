@@ -9,7 +9,7 @@ format:
 	black *.py
 
 test:
-	pytest tests/test_json2qti.py
+	pytest tests/
 
 upload:
 	python3 -m build
