@@ -3,7 +3,7 @@ all:
 .PHONY: upload
 
 test:
-	pytest test_json2qti.py
+	pytest tests/test_json2qti.py
 
 upload:
 	python3 -m build
