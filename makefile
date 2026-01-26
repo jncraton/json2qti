@@ -3,10 +3,10 @@ all:
 .PHONY: upload
 
 lint:
-	pipx run --spec black==26.1.0 black --check *.py
+	black --check *.py
 
 format:
-	pipx run --spec black==26.1.0 black *.py
+	black *.py
 
 test:
 	pytest tests/test_json2qti.py
