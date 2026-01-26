@@ -153,15 +153,24 @@ def format_content(text):
     # Escape HTML special characters first
     text = html.escape(text)
     
-    # Handle code blocks
+    # Handle multi-line code blocks
+    # We look for text surrounded by triple backticks ```code```
+    def replace_code_block(match):
+        code_content = match.group(1)
+        return f"<pre><code>{code_content}</code></pre>"
+
+    # Handle inline code blocks
     # We look for text surrounded by backticks `code`
-    def replace_code(match):
+    def replace_code_inline(match):
         code_content = match.group(1)
         return f"<code>{code_content}</code>"
 
-    # Replace backticks with code tags
+    # Replace triple backticks with pre/code tags (allow multiline)
+    text = re.sub(r'```(.*?)```', replace_code_block, text, flags=re.DOTALL)
+    
+    # Replace single backticks with code tags
     # The regex looks for `([^`]+)` which matches backticks surrounding non-backtick characters
-    text = re.sub(r'`([^`]+)`', replace_code, text)
+    text = re.sub(r'`([^`]+)`', replace_code_inline, text)
     
     # Wrap in paragraph tag
     return f"&lt;p&gt;{text}&lt;/p&gt;"

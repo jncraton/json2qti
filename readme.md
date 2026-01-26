@@ -31,7 +31,11 @@ The input format is minimal by design.
 ```
 
 ### Code Formatting
-You can include inline code snippets by wrapping them in backticks (\`). This is useful for programming questions.
+
+You can include code snippets using markdown-style syntax:
+
+*   **Inline Code:** Wrap text in single backticks (\`).
+*   **Block Code:** Wrap text in triple backticks (\`\`\`).
 
 ```json
 {
@@ -41,10 +45,10 @@ You can include inline code snippets by wrapping them in backticks (\`). This is
       "`hello` to stderr",
       "Nothing"
     ],
-    "Which operator checks for equality?": [
-      "`==`",
-      "`=`",
-      "`!=`"
+    "What does this function do?\n```\ndef add(a, b):\n    return a + b\n```": [
+      "Returns the sum of two numbers",
+      "Returns the product of two numbers",
+      "Prints the numbers"
     ]
   }
 }
