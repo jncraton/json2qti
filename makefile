@@ -16,4 +16,4 @@ upload:
 	python3 -m twine upload dist/*
 
 clean:
-	rm -rf dist __pycache__ tests/__pycache__
+	rm -rf dist __pycache__ tests/__pycache__ .pytest_cache
