@@ -10,9 +10,9 @@ Here's an example:
 
 ```json
 {
-  "Basic Addition": {
-    "What is 1+1?": ["2", "2", "2", "2"],
-    "What is 1+2?": ["2", "2", "2", "2"]
+  "Basic Math Quiz": {
+    "What is 1+1?": ["2", "3", "4", "5"],
+    "What is 1+2?": ["3", "4", "5", "6"]
   }
 }
 ```
