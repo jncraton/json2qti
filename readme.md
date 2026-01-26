@@ -19,6 +19,14 @@ Here's an example:
 
 ## Usage
 
+The simplest way to perform a quick conversion is using `pipx`:
+
+```sh
+pipx run json2qti {quiz.json}
+```
+
+Running locally:
+
 ```sh
 python3 json2qti.py quiz.json # Produces quiz.zip QTI file
 ```
