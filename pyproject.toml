@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "json2qti"
-version = "0.1.0"
+version = "1.0.0"
 description = "Convert simple JSON quizzes to QTI format for LMS import"
 readme = "readme.md"
 authors = [
