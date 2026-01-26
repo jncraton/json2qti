@@ -18,5 +18,9 @@ Here's an example:
 ## Usage
 
 ```sh
-python3 json2qti quiz.json # Produces quiz.zip QTI file
+python3 json2qti.py quiz.json # Produces quiz.zip QTI file
 ```
+
+## Dependencies
+
+This project has no dependencies beyond the Python standard library. The entire package is in a single file json2qti.py.
