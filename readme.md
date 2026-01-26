@@ -37,3 +37,11 @@ python3 json2qti.py quiz.json # Produces quiz.zip QTI file
 ## Dependencies
 
 This project has no dependencies beyond the Python standard library. The entire package is in a single file json2qti.py.
+
+## Development
+
+This project includes a test suite that can be run using `make test`. This will run the tests in the `tests/` directory using `pytest`.
+
+```sh
+make test
+```
