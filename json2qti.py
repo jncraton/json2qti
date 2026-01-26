@@ -152,7 +152,7 @@ def format_content(text):
     """Formats text as HTML, detecting code blocks."""
     # Escape HTML special characters first
     text = html.escape(text)
-    
+
     # Handle multi-line code blocks
     # We look for text surrounded by triple backticks ```code```
     def replace_code_block(match):
@@ -166,14 +166,15 @@ def format_content(text):
         return f"<code>{code_content}</code>"
 
     # Replace triple backticks with pre/code tags (allow multiline)
-    text = re.sub(r'```(.*?)```', replace_code_block, text, flags=re.DOTALL)
-    
+    text = re.sub(r"```(.*?)```", replace_code_block, text, flags=re.DOTALL)
+
     # Replace single backticks with code tags
     # The regex looks for `([^`]+)` which matches backticks surrounding non-backtick characters
-    text = re.sub(r'`([^`]+)`', replace_code_inline, text)
-    
+    text = re.sub(r"`([^`]+)`", replace_code_inline, text)
+
     # Wrap in paragraph tag
     return f"&lt;p&gt;{text}&lt;/p&gt;"
+
 
 def main():
     if len(sys.argv) < 2:
@@ -231,7 +232,7 @@ def main():
         choice_xml_parts = []
         original_answer_ids = []
         correct_choice_id = None
-        
+
         # Create a list of (index, answer_text) tuples to track original position
         # We preserve the original index to identify the correct answer (index 0)
         indexed_answers = list(enumerate(answers))
