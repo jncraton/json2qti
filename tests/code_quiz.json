@@ -1,0 +1,16 @@
+{
+    "Code Quiz": {
+        "What does `print('hello')` do?": [
+            "Prints `hello` to stdout",
+            "Prints `hello` to stderr"
+        ],
+        "Escaping <script>": [
+            "`<script>` tag",
+            "Plain text"
+        ],
+        "Multiline Code": [
+            "```\ndef foo():\n    pass\n```",
+            "Plain text"
+        ]
+    }
+}
