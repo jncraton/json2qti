@@ -30,7 +30,7 @@ json2qti converts token-efficient JSON quiz data into QTI v1.2 packages compatib
 ```
 
 <details>
-<summary>Advanced: Code Formatting</summary>
+<summary>Code Formatting</summary>
 
 Include code snippets using markdown syntax:
 
