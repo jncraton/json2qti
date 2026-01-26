@@ -30,12 +30,12 @@ json2qti converts token-efficient JSON quiz data into QTI v1.2 packages compatib
 ```
 
 <details>
-<summary><strong>Advanced: Code Formatting</strong></summary>
+<summary>Advanced: Code Formatting</summary>
 
 Include code snippets using markdown syntax:
 
-*   **Inline Code:** Wrap text in single backticks (`).
-*   **Block Code:** Wrap text in triple backticks (```).
+*   Inline Code: Wrap text in single backticks (`).
+*   Block Code: Wrap text in triple backticks (```).
 
 ```json
 {
@@ -64,7 +64,7 @@ pipx run json2qti quiz.json
 ```
 
 <details>
-<summary><strong>Manual Execution</strong></summary>
+<summary>Manual Execution</summary>
 
 ```sh
 python3 json2qti.py quiz.json
