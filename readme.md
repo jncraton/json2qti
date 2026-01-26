@@ -71,13 +71,3 @@ python3 json2qti.py quiz.json
 # Creates quiz.zip ready for LMS import
 ```
 </details>
-
-## Development
-
-```sh
-make test
-```
-
-## Dependencies
-
-Python 3.
