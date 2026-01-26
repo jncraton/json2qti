@@ -168,8 +168,14 @@ def main():
     # Calculate hash of input file for unique quiz ID
     json_hash = generate_id(content)
     
-    # Use filename as title (without extension)
-    title = os.path.splitext(os.path.basename(input_file))[0]
+    # Check for wrapper object with title
+    # Structure: {"Quiz Title": {"Question 1": [...]}}
+    if len(quiz_data) == 1 and isinstance(list(quiz_data.values())[0], dict):
+        title = list(quiz_data.keys())[0]
+        quiz_data = quiz_data[title]
+    else:
+        # Fallback: Use filename as title (without extension)
+        title = os.path.splitext(os.path.basename(input_file))[0]
     
     # Start building assessment XML
     assessment_xml_parts = [ASSESSMENT_HEADER.format(hash=json_hash, title=html.escape(title))]
