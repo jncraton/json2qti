@@ -2,6 +2,9 @@ all:
 
 .PHONY: upload
 
+lint:
+	pipx run --spec black==26.1.0 black --check *.py
+
 test:
 	pytest tests/test_json2qti.py
 
