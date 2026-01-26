@@ -4,21 +4,21 @@
 [![Lint](https://github.com/jncraton/json2qti/actions/workflows/lint.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/lint.yml)
 [![Test](https://github.com/jncraton/json2qti/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/test.yml)
 
-**Convert JSON files into QTI import packages.**
+Convert JSON files into QTI import packages.
 
-`json2qti` converts token-efficient JSON quiz data into QTI v1.2 packages compatible with Canvas, Blackboard, Moodle, and Brightspace.
+json2qti converts token-efficient JSON quiz data into QTI v1.2 packages compatible with Canvas, Blackboard, Moodle, and Brightspace.
 
 ## Features
 
-- **LLM Optimized:** Token-efficient JSON format.
-- **Zero Dependencies:** Uses only the Python standard library.
-- **Universal Compatibility:** Generates standard QTI v1.2 packages.
+- LLM Optimized: Token-efficient JSON format.
+- Zero Dependencies: Uses only the Python standard library.
+- Universal Compatibility: Generates standard QTI v1.2 packages.
 
 ## JSON Format
 
-1.  **Quiz Title:** Top-level key.
-2.  **Questions:** Keys inside the object.
-3.  **Answers:** List of strings. The first answer is the correct one (shuffled in the output).
+1. Quiz Title: Top-level key.
+2. Questions: Keys inside the object.
+3. Answers: List of strings. The first answer is the correct one (shuffled in the output).
 
 ```json
 {
