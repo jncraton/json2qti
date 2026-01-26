@@ -4,13 +4,22 @@
 [![Lint](https://github.com/jncraton/json2qti/actions/workflows/lint.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/lint.yml)
 [![Test](https://github.com/jncraton/json2qti/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/test.yml)
 
-Build LMS quizzes from simple json.
+**Instantly convert simple JSON files into QTI import packages for your LMS.**
 
-## Format
+`json2qti` is a lightweight, zero-dependency tool designed to bridge the gap between AI-generated content and Learning Management Systems (Canvas, Blackboard, Moodle, Brightspace, etc.).
 
-The JSON representation is as minimal as possible to allow for token-efficient generation and processing by LLMs. All questions are multiple choice. Questions are keys in an object. Answers are provided as a list of values. The first answer is always the correct choice. Generated quizzes will have answer shuffling enabled.
+## 🚀 Why json2qti?
 
-Here's an example:
+- **LLM Optimized:** The input JSON format is designed to be extremely token-efficient, making it perfect for generating quizzes with ChatGPT, Claude, or other LLMs.
+- **Zero Dependencies:** Runs entirely on the Python standard library. No complex environment setup required.
+- **Universal Compatibility:** Generates standard QTI v1.2 packages compatible with major LMS platforms.
+
+## 📄 JSON Format
+
+The input format is minimal by design.
+1.  **Quiz Title:** The top-level key.
+2.  **Questions:** Keys inside the object.
+3.  **Answers:** A list of strings. **The first answer is always the correct one.** (Don't worry, `json2qti` shuffles them in the output file).
 
 ```json
 {
@@ -21,28 +30,31 @@ Here's an example:
 }
 ```
 
-## Usage
+## 💻 Usage
 
-The simplest way to perform a quick conversion is using `pipx`:
-
-```sh
-pipx run json2qti {quiz.json}
-```
-
-Running locally:
+### Quick Run (Recommended)
+You can run it directly using `pipx` without installing anything globally:
 
 ```sh
-python3 json2qti.py quiz.json # Produces quiz.zip QTI file
+pipx run json2qti quiz.json
 ```
 
-## Dependencies
+### Manual Execution
+Since the tool is a single file, you can also just download `json2qti.py` and run it:
 
-This project has no dependencies beyond the Python standard library. The entire package is in a single file json2qti.py.
+```sh
+python3 json2qti.py quiz.json
+# Creates quiz.zip ready for LMS import
+```
 
-## Development
+## 🛠️ Development
 
-This project includes a test suite that can be run using `make test`. This will run the tests in the `tests/` directory using `pytest`.
+This project includes a test suite to ensure reliability. Tests are located in the `tests/` directory.
 
 ```sh
 make test
 ```
+
+## 📦 Dependencies
+
+Just Python 3.
