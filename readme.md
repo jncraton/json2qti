@@ -4,22 +4,21 @@
 [![Lint](https://github.com/jncraton/json2qti/actions/workflows/lint.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/lint.yml)
 [![Test](https://github.com/jncraton/json2qti/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/test.yml)
 
-**Instantly convert simple JSON files into QTI import packages for your LMS.**
+**Convert JSON files into QTI import packages.**
 
-`json2qti` is a lightweight, zero-dependency tool designed to bridge the gap between AI-generated content and Learning Management Systems (Canvas, Blackboard, Moodle, Brightspace, etc.).
+`json2qti` converts token-efficient JSON quiz data into QTI v1.2 packages compatible with Canvas, Blackboard, Moodle, and Brightspace.
 
-## 🚀 Why json2qti?
+## Features
 
-- **LLM Optimized:** The input JSON format is designed to be extremely token-efficient, making it perfect for generating quizzes with ChatGPT, Claude, or other LLMs.
-- **Zero Dependencies:** Runs entirely on the Python standard library. No complex environment setup required.
-- **Universal Compatibility:** Generates standard QTI v1.2 packages compatible with major LMS platforms.
+- **LLM Optimized:** Token-efficient JSON format.
+- **Zero Dependencies:** Uses only the Python standard library.
+- **Universal Compatibility:** Generates standard QTI v1.2 packages.
 
-## 📄 JSON Format
+## JSON Format
 
-The input format is minimal by design.
-1.  **Quiz Title:** The top-level key.
+1.  **Quiz Title:** Top-level key.
 2.  **Questions:** Keys inside the object.
-3.  **Answers:** A list of strings. **The first answer is always the correct one.** (Don't worry, `json2qti` shuffles them in the output file).
+3.  **Answers:** List of strings. The first answer is the correct one (shuffled in the output).
 
 ```json
 {
@@ -33,10 +32,10 @@ The input format is minimal by design.
 <details>
 <summary><strong>Advanced: Code Formatting</strong></summary>
 
-You can include code snippets using markdown-style syntax:
+Include code snippets using markdown syntax:
 
-*   **Inline Code:** Wrap text in single backticks (\`).
-*   **Block Code:** Wrap text in triple backticks (\`\`\`).
+*   **Inline Code:** Wrap text in single backticks (`).
+*   **Block Code:** Wrap text in triple backticks (```).
 
 ```json
 {
@@ -56,10 +55,9 @@ You can include code snippets using markdown-style syntax:
 ```
 </details>
 
-## 💻 Usage
+## Usage
 
-### Quick Run (Recommended)
-You can run it directly using `pipx` without installing anything globally:
+### Using pipx
 
 ```sh
 pipx run json2qti quiz.json
@@ -68,22 +66,18 @@ pipx run json2qti quiz.json
 <details>
 <summary><strong>Manual Execution</strong></summary>
 
-Since the tool is a single file, you can also just download `json2qti.py` and run it:
-
 ```sh
 python3 json2qti.py quiz.json
 # Creates quiz.zip ready for LMS import
 ```
 </details>
 
-## 🛠️ Development
-
-This project includes a test suite to ensure reliability. Tests are located in the `tests/` directory.
+## Development
 
 ```sh
 make test
 ```
 
-## 📦 Dependencies
+## Dependencies
 
-Just Python 3.
+Python 3.
