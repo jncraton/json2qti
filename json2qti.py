@@ -9,7 +9,7 @@ import re
 
 # XML Templates
 ASSESSMENT_META_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
-<quiz identifier="text2qti_assessment_{hash}" xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 https://canvas.instructure.com/xsd/cccv1p0.xsd">
+<quiz identifier="assessment_{hash}" xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 https://canvas.instructure.com/xsd/cccv1p0.xsd">
   <title>{title}</title>
   <description></description>
   <shuffle_answers>true</shuffle_answers>
@@ -32,7 +32,7 @@ ASSESSMENT_META_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
   <show_correct_answers_last_attempt>false</show_correct_answers_last_attempt>
   <only_visible_to_overrides>false</only_visible_to_overrides>
   <module_locked>false</module_locked>
-  <assignment identifier="text2qti_assignment_{hash}">
+  <assignment identifier="assignment_{hash}">
     <title>{title}</title>
     <due_at/>
     <lock_at/>
@@ -79,7 +79,7 @@ ASSESSMENT_META_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
 
 ASSESSMENT_HEADER = """<?xml version="1.0" encoding="UTF-8"?>
 <questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
-  <assessment ident="text2qti_assessment_{hash}" title="{title}">
+  <assessment ident="assessment_{hash}" title="{title}">
     <qtimetadata>
       <qtimetadatafield>
         <fieldlabel>cc_maxattempts</fieldlabel>
@@ -92,7 +92,7 @@ ASSESSMENT_FOOTER = """    </section>
   </assessment>
 </questestinterop>"""
 
-ITEM_TEMPLATE = """      <item ident="text2qti_question_{question_id}" title="Question">
+ITEM_TEMPLATE = """      <item ident="question_{question_id}" title="Question">
         <itemmetadata>
           <qtimetadata>
             <qtimetadatafield>
@@ -109,7 +109,7 @@ ITEM_TEMPLATE = """      <item ident="text2qti_question_{question_id}" title="Qu
             </qtimetadatafield>
             <qtimetadatafield>
               <fieldlabel>assessment_question_identifierref</fieldlabel>
-              <fieldentry>text2qti_question_ref_{question_id}</fieldentry>
+              <fieldentry>question_ref_{question_id}</fieldentry>
             </qtimetadatafield>
           </qtimetadata>
         </itemmetadata>
@@ -240,7 +240,7 @@ def main():
 
         for i, answer_text in indexed_answers:
             # Unique ID for the answer
-            choice_id = "text2qti_choice_" + generate_id(
+            choice_id = "choice_" + generate_id(
                 question_text + str(answer_text) + str(i) + json_hash
             )
             original_answer_ids.append(choice_id)

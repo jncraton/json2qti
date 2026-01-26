@@ -131,7 +131,7 @@ def test_shuffle_answers(quiz_file):
             
             # We can't strictly assert the order without mocking random, 
             # but we can ensure the file generates valid XML with choices.
-            assert "text2qti_choice_" in content
+            assert "choice_" in content
     finally:
          if os.path.exists(expected_zip):
             os.remove(expected_zip)
