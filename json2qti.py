@@ -140,9 +140,11 @@ CHOICE_TEMPLATE = """              <response_label ident="{choice_id}">
                 </material>
               </response_label>"""
 
+
 def generate_id(content):
     """Generates a unique ID based on content."""
-    return hashlib.sha256(content.encode('utf-8')).hexdigest()
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()
+
 
 def main():
     if len(sys.argv) < 2:
@@ -155,7 +157,7 @@ def main():
         sys.exit(1)
 
     try:
-        with open(input_file, 'r', encoding='utf-8') as f:
+        with open(input_file, "r", encoding="utf-8") as f:
             content = f.read()
             quiz_data = json.loads(content)
     except json.JSONDecodeError as e:
@@ -167,7 +169,7 @@ def main():
 
     # Calculate hash of input file for unique quiz ID
     json_hash = generate_id(content)
-    
+
     # Check for wrapper object with title
     # Structure: {"Quiz Title": {"Question 1": [...]}}
     if len(quiz_data) == 1 and isinstance(list(quiz_data.values())[0], dict):
@@ -176,72 +178,78 @@ def main():
     else:
         # Fallback: Use filename as title (without extension)
         title = os.path.splitext(os.path.basename(input_file))[0]
-    
+
     # Start building assessment XML
-    assessment_xml_parts = [ASSESSMENT_HEADER.format(hash=json_hash, title=html.escape(title))]
-    
+    assessment_xml_parts = [
+        ASSESSMENT_HEADER.format(hash=json_hash, title=html.escape(title))
+    ]
+
     total_points = 0
-    
+
     for question_text, answers in quiz_data.items():
         if not isinstance(answers, list) or not answers:
-            print(f"Warning: Skipping question '{question_text}' - answers must be a non-empty list")
+            print(
+                f"Warning: Skipping question '{question_text}' - answers must be a non-empty list"
+            )
             continue
-            
+
         total_points += 1
-        
+
         # Unique ID for the question
         question_id = generate_id(question_text + json_hash)
-        
+
         # Process answers
         choice_xml_parts = []
         original_answer_ids = []
         correct_choice_id = None
-        
+
         for i, answer_text in enumerate(answers):
             # Unique ID for the answer
-            choice_id = "text2qti_choice_" + generate_id(question_text + str(answer_text) + str(i) + json_hash)
+            choice_id = "text2qti_choice_" + generate_id(
+                question_text + str(answer_text) + str(i) + json_hash
+            )
             original_answer_ids.append(choice_id)
-            
+
             # First answer is correct
             if i == 0:
                 correct_choice_id = choice_id
-            
-            choice_xml_parts.append(CHOICE_TEMPLATE.format(
-                choice_id=choice_id,
-                choice_text=html.escape(str(answer_text))
-            ))
-            
+
+            choice_xml_parts.append(
+                CHOICE_TEMPLATE.format(
+                    choice_id=choice_id, choice_text=html.escape(str(answer_text))
+                )
+            )
+
         item_xml = ITEM_TEMPLATE.format(
             question_id=question_id,
             original_answer_ids=",".join(original_answer_ids),
             question_text=html.escape(question_text),
             choices="\n".join(choice_xml_parts),
-            correct_choice_id=correct_choice_id
+            correct_choice_id=correct_choice_id,
         )
         assessment_xml_parts.append(item_xml)
 
     assessment_xml_parts.append(ASSESSMENT_FOOTER)
     assessment_xml = "\n".join(assessment_xml_parts)
-    
+
     # Build assessment_meta XML
     assessment_meta_xml = ASSESSMENT_META_TEMPLATE.format(
-        hash=json_hash,
-        title=html.escape(title),
-        points=total_points
+        hash=json_hash, title=html.escape(title), points=total_points
     )
 
     # Create Zip File
     output_filename = os.path.splitext(os.path.basename(input_file))[0] + ".zip"
     quiz_root = f"assessment_{json_hash}"
-    
+
     try:
-        with zipfile.ZipFile(output_filename, 'w') as zf:
+        with zipfile.ZipFile(output_filename, "w") as zf:
             zf.writestr(f"{quiz_root}/assessment_meta.xml", assessment_meta_xml)
             zf.writestr(f"{quiz_root}/assessment_{json_hash}.xml", assessment_xml)
         print(f"Successfully created {output_filename}")
     except Exception as e:
         print(f"Error writing zip file: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
