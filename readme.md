@@ -1,5 +1,6 @@
 # json2qti
 
+[![PyPI version](https://badge.fury.io/py/json2qti.svg)](https://badge.fury.io/py/json2qti)
 [![Lint](https://github.com/jncraton/json2qti/actions/workflows/lint.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/lint.yml)
 [![Test](https://github.com/jncraton/json2qti/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/json2qti/actions/workflows/test.yml)
 
