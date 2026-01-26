@@ -30,7 +30,8 @@ The input format is minimal by design.
 }
 ```
 
-### Code Formatting
+<details>
+<summary><strong>Advanced: Code Formatting</strong></summary>
 
 You can include code snippets using markdown-style syntax:
 
@@ -53,6 +54,7 @@ You can include code snippets using markdown-style syntax:
   }
 }
 ```
+</details>
 
 ## 💻 Usage
 
@@ -63,13 +65,16 @@ You can run it directly using `pipx` without installing anything globally:
 pipx run json2qti quiz.json
 ```
 
-### Manual Execution
+<details>
+<summary><strong>Manual Execution</strong></summary>
+
 Since the tool is a single file, you can also just download `json2qti.py` and run it:
 
 ```sh
 python3 json2qti.py quiz.json
 # Creates quiz.zip ready for LMS import
 ```
+</details>
 
 ## 🛠️ Development
 
