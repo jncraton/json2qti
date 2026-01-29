@@ -23,8 +23,18 @@ json2qti converts token-efficient JSON quiz data into QTI v1.2 packages compatib
 ```json
 {
   "Basic Math Quiz": {
-    "What is 1+1?": ["2", "3", "4", "5"],
-    "What is 1+2?": ["3", "4", "5", "6"]
+    "What is 1+1?": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "What is 1+2?": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ]
   }
 }
 ```
